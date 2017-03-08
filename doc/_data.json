@@ -75,10 +75,10 @@
                 "sections": 
 				[
                     {
-                        "section": "This tutorial demonstrates a simple message flow that receives XML data over HTTP (using HTTPInput node). The XML data is parsed and passed to a REST Request Node, which uses the received parameter to call a REST API. The REST API has an implemented GET operation, where a graphical data mapping node is used to 'retrieve' a User based on the input data and replies back to the request via an HTTPReply node."
+                        "section": "This tutorial demonstrates how a RESTRequest node can be used to call REST APIs in IBM Integration Bus. A simple application has been created, which message flow receives XML data over HTTP (using HTTPInput node). The XML data is parsed and passed to a REST Request Node, which uses the received parameter to call a REST API. The RESTRequest Node's properties specify where the REST API is running (in this tutorial this will be your localhost), the Request parameter and various other settings. The REST API has an implemented GET operation, where a graphical data mapping node is used to 'retrieve' a User based on the input data and replies back to the request via an HTTPReply node."
                     },
                     {
-                        "section": "In IBM Integration Bus, an application is a container for all the resources that are required to create a solution. An application can contain IBM Integration Bus resources, such as flows, message definitions, libraries, and JAR files. An application is used to hold the message flow in this tutorial. In addition, there is a Shared Library, which contains resources that can be used by different applications. In this tutorial, the Application references the Shared Library, which contains schema definition and the swagger file which describes the REST API. IBM Integration Bus has first-class support for building your own REST APIs."
+                        "section": "In IBM Integration Bus, an application is a container for all the resources that are required to create a solution. An application can contain IBM Integration Bus resources, such as flows, message definitions, libraries, and JAR files. In this tutorial, an application is used to hold the message flow which contains the RESTRequest node. In addition, a Shared Library is used, which contains resources that can be used by different applications. In this tutorial, the Application references the Shared Library, which contains schema definition and the swagger file which describes the REST API. IBM Integration Bus has first-class support for building your own REST APIs."
                     }
                 ]
             },
@@ -173,7 +173,7 @@
                             "section": ""
                         },
                         {
-                            "section": "Once all artefacts have been deployed your application is ready to process messages."
+                            "section": "Once all artefacts have been deployed your application is ready to process messages. Use the 'Deploy' button on the 'Run' tab to complete the deployment."
                         }
                     ]
                 },
@@ -253,7 +253,7 @@
                                                     "details": "The input XML message is parsed from the HTTPInput node and the parameter 'UserNumber' with a value '1' is passed to the RESTRequest node."
                                                 },
                                                 {
-                                                    "details": "The RESTRequest node calls the 'get' operation of the <b>RESTRequest_API</b>"
+                                                    "details": "The RESTRequest node calls the 'GET' operation of the <b>RESTRequest_API</b>"
                                                 },
                                                 {
                                                     "details": "The implementation of the operation in this tutorial uses a Mapping node to map the input user number and return the user's first name, last name and its details."
@@ -268,7 +268,7 @@
                             "section": "After the request message is processed, the message path is automatically highlighted on the message flow."
                         },
                         {
-                            "section": "Click on any connection to see the data that passed through that connection. You can see that the request (input) message data is in XML format and has one field named UserNumber. The response (output) message has been converted this to a JSON format and has fields named 'firstName', 'lastName', 'userDetails', 'userNumber'."
+                            "section": "Click on any connection to see the data that passed through that connection. You can see that the request (input) message data is in XML format and has one field named UserNumber. The response (output) message has been converted to a JSON format and has fields named 'firstName', 'lastName', 'userDetails', 'userNumber'."
                         },
                         {
                             "section": "Feel free to test the REST API by sending <b>'User 2'</b> or <b>'User 3'</b> test messages, following the above instructions."
