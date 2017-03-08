@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <inlinedXMLSchema><![CDATA[<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">   
+    <xsd:element name="UserNumber" type="xsd:string"/>   
+</xsd:schema>]]></inlinedXMLSchema>
+    <input path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/BlobMessage.xsd" var="var"/>
+    <input inlinedXMLSchema="true" path="../schema_0.xsd" var="var1"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var2"/>
+    <output derivedFrom="MB:JSON_schema_in_swagger_document" path="/Tutorial_swagger.json" var="var3"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="out" uri="http://www.ibm.com/iib/msl/json"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="getUser_Mapping">
+        <input derivedFrom="MB:JSON_operation_name:getUser" path="$var/mb:msg(BLOB,assembly,BLOB,Properties,LocalEnvironment)" var="ComIbmMessageAssembly_BLOB">
+            <cast derivedFrom="MB:JSON_path_query_parm:UserNumber" path="$ComIbmMessageAssembly_BLOB/LocalEnvironment/REST/Input/Parameters/any" qualifier="UserNumber" ref="var1"/>
+        </input>
+        <output namespace="http://www.ibm.com/iib/msl/json" path="$var2/mb:msg(JSON,assembly,JSON,Properties)" var="ComIbmMessageAssembly_JSON">
+            <cast derivedFrom="MB:JSON_operation_response" path="$ComIbmMessageAssembly_JSON/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}Output" ref="var3"/>
+        </output>
+        <move>
+            <input path="$ComIbmMessageAssembly_BLOB/Properties"/>
+            <output path="$ComIbmMessageAssembly_JSON/Properties"/>
+        </move>
+        <task type="info">
+            <documentation description="The REST API input data of operation getUser.">This Task is provided to show the location of the REST API input data of operation getUser.
+The path and query parameters are provided under "Parameters".
+You may need to use these as inputs to your mappings.</documentation>
+            <input path="$ComIbmMessageAssembly_BLOB/LocalEnvironment/REST/Input"/>
+        </task>
+        <condition>
+            <if>
+                <input path="$ComIbmMessageAssembly_BLOB/LocalEnvironment/REST/Input/Parameters/UserNumber" var="UserNumber10"/>
+                <output path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)"/>
+                <annotation key="$NON-PERSISTENT" value="1"/>
+                <test lang="xpath">$UserNumber10 = '1' or $UserNumber10 = '2' or $UserNumber10 = '3'</test>
+                <if>
+                    <input path="$UserNumber10/." var="UserNumber11"/>
+                    <output path="."/>
+                    <annotation key="$NON-PERSISTENT" value="1"/>
+                    <test lang="xpath">$UserNumber11 = '1'</test>
+                    <local>
+                        <input path="$UserNumber11/." var="UserNumber15"/>
+                        <output path="."/>
+                        <move>
+                            <input path="$UserNumber15/." var="UserNumber16"/>
+                            <output path="userNumber"/>
+                        </move>
+                        <assign value="Peter">
+                            <output path="firstName"/>
+                        </assign>
+                        <assign value="Pan">
+                            <output path="lastName"/>
+                        </assign>
+                        <assign value="Employee">
+                            <output path="userDetails"/>
+                        </assign>
+                    </local>
+                </if>
+                <if>
+                    <input path="$UserNumber10/." var="UserNumber12"/>
+                    <output path="."/>
+                    <annotation key="$NON-PERSISTENT" value="1"/>
+                    <test lang="xpath">$UserNumber12 = '2'
+</test>
+                    <local>
+                        <input path="$UserNumber12/." var="UserNumber17"/>
+                        <output path="."/>
+                        <move>
+                            <input path="$UserNumber17/." var="UserNumber18"/>
+                            <output path="userNumber"/>
+                        </move>
+                        <assign value="Matilda">
+                            <output path="firstName"/>
+                        </assign>
+                        <assign value="Wormwood">
+                            <output path="lastName"/>
+                        </assign>
+                        <assign value="Explorer">
+                            <output path="userDetails"/>
+                        </assign>
+                    </local>
+                </if>
+                <if>
+                    <input path="$UserNumber10/." var="UserNumber13"/>
+                    <output path="."/>
+                    <annotation key="$NON-PERSISTENT" value="1"/>
+                    <test lang="xpath">$UserNumber13 = '3'</test>
+                    <local>
+                        <input path="$UserNumber13/." var="UserNumber19"/>
+                        <output path="."/>
+                        <move>
+                            <input path="$UserNumber19/." var="UserNumber20"/>
+                            <output path="userNumber"/>
+                        </move>
+                        <assign value="Harry">
+                            <output path="firstName"/>
+                        </assign>
+                        <assign value="Potter">
+                            <output path="lastName"/>
+                        </assign>
+                        <assign value="Writer">
+                            <output path="userDetails"/>
+                        </assign>
+                    </local>
+                </if>
+            </if>
+            <else>
+                <input path="$ComIbmMessageAssembly_BLOB/LocalEnvironment/REST/Input/Parameters/UserNumber"/>
+                <output path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)"/>
+                <move>
+                    <input path="." var="UserNumber14"/>
+                    <output path="userNumber"/>
+                </move>
+                <assign value="User does not exist">
+                    <output path="firstName"/>
+                </assign>
+                <assign value="---">
+                    <output path="lastName"/>
+                </assign>
+                <assign value="---">
+                    <output path="userDetails"/>
+                </assign>
+            </else>
+        </condition>
+    </mappingDeclaration>
+</mappingRoot>

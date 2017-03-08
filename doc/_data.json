@@ -1,0 +1,321 @@
+{
+    "version": "0.6",
+    "pageContent": 
+	{
+        "_comments": "JSON object that contains data for page labels, buttons, etc.",
+        "navItems": 
+		{
+            "_common": 
+			{
+                "buttonBackToGallery": 
+				{
+                    "name": "Back To Gallery",
+					"method": "backToGallery()",
+					"idName": "backToGallery"	
+                },
+                "buttonStartTutorial": 
+				{
+                    "name": "Start Tutorial",
+					"method": "startTutorialFromDetailsScreen()",
+					"idName": "startTutorial"
+                },
+				"buttonViewDetails": 
+				{
+                    "name": "View Details",
+					"method": "viewDetails()",
+					"idName": "stepsViewDetails"	
+                }
+            }
+        }
+    },
+    "tutorial": 
+	{
+        "_common": 
+		{
+            "name": "REST Request Node",
+            "shortDescription": "Learn how to use a RESTRequest node to call a REST API in an IBM Integration Bus message flow by exploring this simple example.",
+            "durationText": "This tutorial takes approximately",
+            "durationTime": "5 minutes",
+            "_resourceToOpenComment": "The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json Tutorials listing on ot4i.",
+            "resourceToOpen": "MainFlow",
+            "helpLink": 
+			{
+                "text": "IBM Knowledge Center",
+                "link": "/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm"
+            }
+        },
+        "pageDetails": 
+		{
+            "topicsName": "Tutorial Topics",
+            "_topicListComment": "A short list of product concepts or tasks demonstrated by this tutorial",
+            "topicList": 
+			[
+                {
+                    "title": "REST Request node"
+                },
+                {
+                    "title": "Calling a REST API using REST Request node"
+               },
+                {
+                    "title": "Transformation using graphical data mapping"
+                }
+            ],
+            "outcomesName": "Learning outcomes",
+            "_outcomesComment": "A description of what the user will have learned or accomplished by running this tutorial.",
+            "outcomeList": 
+			[
+                {
+                    "title": "Understanding of how to use REST Request Node in IBM Integration Bus to call a REST API."
+                }
+            ],
+            "summary": 
+			{
+                "overviewName": "OVERVIEW",
+                "_overviewComment": "A short description of what happens in this tutorial, and an optional short explanation of the IIB concepts used in this tutorial if necessary for context. What background knowledge must the user have for this to make sense?",
+                "sections": 
+				[
+                    {
+                        "section": "This tutorial demonstrates a simple message flow that receives XML data over HTTP (using HTTPInput node). The XML data is parsed and passed to a REST Request Node, which uses the received parameter to call a REST API. The REST API has an implemented GET operation, where a graphical data mapping node is used to 'retrieve' a User based on the input data and replies back to the request via an HTTPReply node."
+                    },
+                    {
+                        "section": "In IBM Integration Bus, an application is a container for all the resources that are required to create a solution. An application can contain IBM Integration Bus resources, such as flows, message definitions, libraries, and JAR files. An application is used to hold the message flow in this tutorial. In addition, there is a Shared Library, which contains resources that can be used by different applications. In this tutorial, the Application references the Shared Library, which contains schema definition and the swagger file which describes the REST API. IBM Integration Bus has first-class support for building your own REST APIs."
+                    }
+                ]
+            },
+			"helpLinks": 
+			{
+				"_helpLinksComment": "Helplinks that have a type:web attribute are rendered as web links. Otherwise, links are assumed to be to embedded Help topics in the Knowledge Center.",
+				"title": "Find out more",
+				"details": 
+				[
+					{
+						"title": "Knowledge Center link to ",
+						"description": "Developing integration solutions by using applications",
+						"link": "com.ibm.etools.mft.doc/bi12002_.htm",
+						"type": "help"
+					},
+					{
+						"title": "GitHub link to ",
+						"description": "DFDL Schemas",
+						"link": "http://github.com/DFDLSchemas",
+						"type": "web"
+					}
+				]
+			}
+        },
+        "pageSteps": 
+		{
+            "create": 
+			{
+                "overview": 
+				{
+                    "name": "Create",
+                    "heading": "Import projects",
+                    "_createComment": "A description of what will happen when the user clicks Import.",
+                    "sections": 
+					[
+                        {
+                            "section": "When you ready to proceed with this tutorial use Import button to the right. This will import three artefacts in your Workspace - <b>RESTRequest_API</b>, <b>SharedLibrary</b> and an application <b>TutorialREST_Client</b>."
+                        },
+                        {
+                            "section": "The <b>RESTRequest_API</b> has one implemented operation (GET). The <b>TutorialREST_Client</b> application contains a simple message flow, which will call the REST API using a RESTRequest Node. The <b>SharedLibrary</b> contains resources which may be referenced by different applications or other libraries."
+                        },
+                        {
+                            "section": 
+                            [ "Please note that the <b>RESTRequest_API</b> contains its own copy of the swagger document, which desribes the REST API. The application references a copy of the swagger file in the <b>SharedLibrary</b>."
+                        ]
+                        }
+                    ]
+                },
+                "helpLinks": 
+				{
+                    "title": "Find out more",
+                    "details": 
+					[
+                        {
+                            "title": "Knowledge Center link to ",
+                            "description": "Developing integration solutions by using applications",
+                            "link": "com.ibm.etools.mft.doc/bi12002_.htm"
+                        }
+                    ]
+                },
+                "actions": 
+				{
+                    "title": "Create Actions",
+                    "details": 
+					[
+                        {
+                            "name": "Import",
+                            "method": "importArtifacts()"
+                        }
+                    ]
+                }
+            },
+            "prepare": 
+			{
+                "overview": 
+				{
+                    "name": "Prepare",
+                    "heading": "Imported projects",
+                    "_prepareComment": "A description of what just happened when the user clicked Import, and what will happen when the user clicks Deploy.",
+                    "sections": 
+					[
+                        {
+                            "section": "In the Application Development view of your workspace the imported resources will be shown. This includes the <b>RESTRequest_API</b>, <b>TutorialREST_Client</b> application, <b>SharedLibrary</b> and a BARs folder, which contains the BAR file. "
+                        },
+                        {
+                            "section": ""
+                        },
+                        {
+                            "section": "The BAR file has all resources packaged and ready for deployment. Alternatively, you can deploy the resources individually to your Integration Server. However, if the resources are deployed individually, it is required that the <b>SharedLibrary</b> is deployed before the <b>RESTTutorial_Client</b> application, as it references the Shared Library."
+                        },
+                        {
+                            "section": ""
+                        },
+                        {
+                            "section": "Once all artefacts have been deployed your application is ready to process messages."
+                        }
+                    ]
+                },
+                "helpLinks": 
+				{
+                    "title": "Find out more",
+                    "details": 
+					[
+                        {
+                            "title": "Knowledge Center link to ",
+                            "description": "Developing integration solutions by using integration services",
+                            "link": "com.ibm.etools.mft.doc/bi12002_.htm"
+                        }
+                    ]
+                },
+                "actions-removed": 
+				{
+                    "title": "Prepare Actions",
+                    "details": 
+					[
+                        {
+                            "name": "Deploy",
+                            "method": "deployArtifacts()"
+                        }
+                    ]
+                }
+            },
+            "run": 
+			{
+                "overview": 
+				{
+                    "name": "Run",
+                    "heading": "Follow these steps to complete the tutorial",
+                    "_runComment": "The full steps for the user to run through the tutorial. Use 'sections' to render paragraphs, 'steps' with a type of 'ordered' or 'unordered' to render HTML lists, and 'substeps' to render nested lists.",
+                    "sections": 
+					[
+                        {
+                            "section": "The <b>TutorialREST_Client</b> application is shown in the Application Development view of your workspace.",
+                            "steps": 
+							{
+                                "type": "ordered",
+                                "details": 
+								[
+                                    {
+                                        "details": "In order to run REST APIs in your Integration Server, you will need to enable The Cross-Origin Resource Sharing (CORS). In your Integration Console run the following command:",
+                                    	"substeps": 
+										{
+                                            "type": "unordered",
+                                            "details": 
+											[
+                                                {
+                                                    "details": " <b>mqsichangeproperties TESTNODE_xxxxxxxx -e default -o HTTPConnector -n corsEnabled -v true</b>        in which"
+                                                },
+                                                {
+                                                    "details": "<b>'TESTNODE_xxxxxxx'</b> is the name of your Integration Node."
+                                                },
+                                                {
+                                                    "details": "<b>'default'</b> is the name of your Integration Server."
+                                                }
+                                            ]
+                                        }	
+                                    },                                    
+                                    {
+                                        "details": "Open the REST_getUser message flow, and click the Flow Exerciser icon <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png' alt='' /> to start recording the message path through the flow."
+                                    },
+                                    {
+                                        "details": "Click the Send Message icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/sendMessage.png' alt='' /> to select a message to send to the flow."
+                                    },
+                                    {
+                                        "details": "Choose the <b>'User 1'</b> message, and click <b>Send</b>. Your request message is sent to the HTTPInput node.",
+                                        "substeps": 
+										{
+                                            "type": "unordered",
+                                            "details": 
+											[
+                                                {
+                                                    "details": "The input XML message is parsed from the HTTPInput node and the parameter 'UserNumber' with a value '1' is passed to the RESTRequest node."
+                                                },
+                                                {
+                                                    "details": "The RESTRequest node calls the 'get' operation of the <b>RESTRequest_API</b>"
+                                                },
+                                                {
+                                                    "details": "The implementation of the operation in this tutorial uses a Mapping node to map the input user number and return the user's first name, last name and its details."
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "section": "After the request message is processed, the message path is automatically highlighted on the message flow."
+                        },
+                        {
+                            "section": "Click on any connection to see the data that passed through that connection. You can see that the request (input) message data is in XML format and has one field named UserNumber. The response (output) message has been converted this to a JSON format and has fields named 'firstName', 'lastName', 'userDetails', 'userNumber'."
+                        },
+                        {
+                            "section": "Feel free to test the REST API by sending <b>'User 2'</b> or <b>'User 3'</b> test messages, following the above instructions."
+                        }                        
+                    ]
+                },
+                "helpLinks": 
+				{
+                    "title": "Find out more",
+                    "details": 
+					[
+                        {
+                            "title": "Knowledge Center link to ",
+                            "description": "Developing integration solutions by using applications",
+                            "link": "com.ibm.etools.mft.doc/bi12002_.htm"
+                        },
+                        {
+                            "title": "Knowledge Center link to ",
+                            "description": "Testing your message flow by using the Flow exerciser",
+                            "link": "com.ibm.etools.mft.doc/rt26110_.htm"
+                        }
+                    ]
+                },
+                "actions": 
+				{
+                    "title": "Run Actions",
+                    "details": 
+					[
+                        {
+                            "name": "Deploy",
+                            "method": "deployArtifacts()"
+                        }
+                    ]
+                },
+				"exits": 
+				{
+					"title": "Run Exits",
+					"details": 
+					[
+						{
+							"name": "Clean Up",
+							"description": "Clean up and remove any changes in your workspace made by the tutorial.",
+							"method": "cleanUp()"
+						}
+					]
+				}
+            }
+        }
+    }
+}
