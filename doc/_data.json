@@ -218,20 +218,20 @@
                                 "details": 
 								[
                                     {
-                                        "details": "In order to run REST APIs in your Integration Server, you will need to enable The Cross-Origin Resource Sharing (CORS). In your Integration Console run the following command:",
+                                        "details": "In order to run REST APIs in your Integration Server, you will need to enable The Cross-Origin Resource Sharing (CORS).",
                                     	"substeps": 
 										{
                                             "type": "unordered",
                                             "details": 
 											[
                                                 {
-                                                    "details": " <b>mqsichangeproperties TESTNODE_xxxxxxxx -e default -o HTTPConnector -n corsEnabled -v true</b>        in which"
+                                                    "details": " In your Integration Console run the following command:<br><code><span class='cmdname'>mqsichangeproperties</span> <span class='varname'>TESTNODE_userid</span> -e <span class='varname'>default</span> -o <span class='varname'>HTTPConnector</span> -n <span class='varname'>corsEnabled</span> -v <span class='varname'>true</span></code><br>where<br><span class='varname'>TESTNODE_userid</span> is the name of your Integration Node <br>and<br> <span class='varname'>default</span> is the name of your Integration Server."
                                                 },
                                                 {
-                                                    "details": "<b>'TESTNODE_xxxxxxx'</b> is the name of your Integration Node."
+                                                    "details": "In the Integration console window, stop the default integration node by typing the following command:<br><code><span class='cmdname'>mqsistop</span> <span class='varname'>TESTNODE_userid</span></code>"
                                                 },
                                                 {
-                                                    "details": "<b>'default'</b> is the name of your Integration Server."
+                                                    "details": " Start the default integration node by typing the following command:<br><code><span class='cmdname'>mqsistart</span> <span class='varname'>TESTNODE_userid</span></code>"
                                                 }
                                             ]
                                         }	
