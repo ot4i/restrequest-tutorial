@@ -75,10 +75,10 @@
                 "sections": 
 				[
                     {
-                        "section": "This tutorial demonstrates how a RESTRequest node can be used to call REST APIs. A simple application has been created, containing a message flow which receives XML data over HTTP (using an HTTPInput node). The XML data is parsed and passed to a RESTRequest node, which uses the received parameter to call a REST API. The RESTRequest node's properties specify where the REST API is running (in this tutorial this will be your localhost), and the Request parameter to send. The REST API implements a GET operation, where a graphical data mapping node is used to 'retrieve' information about a user based on the input data (a UserNumber path parameter)."
+                        "section": "This tutorial demonstrates how a RESTRequest node can be used to call REST APIs. A simple application has been created, containing a message flow which receives XML data over HTTP (using an HTTPInput node). The XML data is parsed and passed to a RESTRequest node. The RESTRequest node's properties specify where the REST API is running (in this tutorial this will be your localhost), and the Request parameter to send. The REST API implements a GET operation, in which a graphical data mapping node is used to 'retrieve' information (actually the values are hard coded in a map) about a user based on the input data."
                     },
                     {
-                        "section": "In IBM Integration Bus, an application is a container for all the resources that are required to create a solution. An application can contain IBM Integration Bus resources, such as flows, message definitions, libraries, and JAR files. In this tutorial, an application is used to hold the message flow which contains the RESTRequest node. In addition, a Shared Library is used, which contains resources shared by different applications."
+                        "section": "In IBM Integration Bus, an application is a container for all the resources that are required to create a solution. An application can contain IBM Integration Bus resources, such as flows, message definitions, libraries, and JAR files. In this tutorial, an application is used to hold the message flow which contains the RESTRequest node. A referenced shared Library is used, to hold an XML schema to describe the input data and a Swagger file to describe the interface of the REST API which is invoked."
                     }
                 ]
             },
@@ -115,20 +115,26 @@
                     "sections": 
 					[
                         {
-                            "section": "Use the Import button to the right to import the tutorial artifacts into your workspace:"
-                        },
-                        {
-                            "section": "The <b>TutorialREST_Client</b> application contains a simple message flow, which will call the REST API using a RESTRequest Node."
-                        },
-                        {
-                            "section": "The <b>SharedLibrary</b> contains resources which may be referenced by different applications or other libraries."
-                        },
-                        {
-                            "section": "The <b>RESTRequest_API</b> has one implemented operation (GET). "
+                            "section": "Use the Import button to the right to import the tutorial artifacts into your workspace:",
+                            "steps":{
+                                "type": "unordered",
+                                "details": 
+                                [
+                                    {
+                                      "details": "The <b>RESTRequest_Client</b> application contains a simple message flow, which will call the REST API using a RESTRequest Node."
+                                    },
+                                    {
+                                      "details": "The <b>RESTRequest_SharedLibrary</b> contains resources which may be referenced by different applications or other libraries."
+                                    },
+                                    {
+                                      "details": "The <b>RESTRequest_API</b> has one implemented operation (GET)."
+                                    }
+                                ]
+                            }
                         },
                         {
                             "section": 
-                            [ "Please note that the <b>RESTRequest_API</b> contains its own copy of the swagger document, which desribes the REST API. The application references a copy of the swagger file in the <b>SharedLibrary</b>."
+                            [ "Please note that the <b>RESTRequest_API</b> contains its own copy of the swagger document, which describes the REST API. The application references a separate copy of the swagger file in <b>RESTRequest_SharedLibrary</b>."
                         ]
                         }
                     ]
@@ -167,7 +173,7 @@
                     "sections": 
 					[
                         {
-                            "section": "In order to run REST APIs in your Integration Server, you will need to enable The Cross-Origin Resource Sharing (CORS).",
+                            "section": "Before deploying the provided REST API in your Integration Server, enable Cross-Origin Resource Sharing (CORS).",
                             "steps": 
 							{
                                 "type": "ordered",
@@ -232,7 +238,7 @@
                                         "details": "Deploy <b>RESTRequest_API</b> by dragging and dropping it on to your integration server"
                                     },
                                     {
-                                        "details": "Inside the <b>TutorialREST_Client</b> application, open the <b>REST_getUser</b> message flow, and click the Flow Exerciser icon <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png' alt='' /> to start recording the message path through the flow."
+                                        "details": "Inside the <b>RESTRequest_Client</b> application, open the <b>RESTRequest_Client</b> message flow, and click the Flow Exerciser icon <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png' alt='' /> to start recording the message path through the flow."
                                     },
                                     {
                                         "details": "Click the Send Message icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/sendMessage.png' alt='' /> to select a message to send to the flow."
