@@ -32,8 +32,8 @@
 	{
         "_common": 
 		{
-            "name": "REST Request Node",
-            "shortDescription": "Learn how to use a RESTRequest node to call a REST API in an IBM Integration Bus message flow by exploring this simple example.",
+            "name": "Call a REST API using the RESTRequest node",
+            "shortDescription": "Learn how to use a RESTRequest node to call a REST API by exploring this simple example.",
             "durationText": "This tutorial takes approximately",
             "durationTime": "5 minutes",
             "_resourceToOpenComment": "The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json Tutorials listing on ot4i.",
@@ -54,7 +54,7 @@
                     "title": "REST Request node"
                 },
                 {
-                    "title": "Calling a REST API using REST Request node"
+                    "title": "Calling a REST API using the RESTRequest node"
                },
                 {
                     "title": "Transformation using graphical data mapping"
@@ -65,7 +65,7 @@
             "outcomeList": 
 			[
                 {
-                    "title": "Understanding of how to use REST Request Node in IBM Integration Bus to call a REST API."
+                    "title": "Understand how to use the RESTRequest Node to call a REST API."
                 }
             ],
             "summary": 
@@ -75,10 +75,10 @@
                 "sections": 
 				[
                     {
-                        "section": "This tutorial demonstrates how a RESTRequest node can be used to call REST APIs in IBM Integration Bus. A simple application has been created, which message flow receives XML data over HTTP (using HTTPInput node). The XML data is parsed and passed to a REST Request Node, which uses the received parameter to call a REST API. The RESTRequest Node's properties specify where the REST API is running (in this tutorial this will be your localhost), the Request parameter and various other settings. The REST API has an implemented GET operation, where a graphical data mapping node is used to 'retrieve' a User based on the input data and replies back to the request via an HTTPReply node."
+                        "section": "This tutorial demonstrates how a RESTRequest node can be used to call REST APIs. A simple application has been created, containing a message flow which receives XML data over HTTP (using an HTTPInput node). The XML data is parsed and passed to a RESTRequest node, which uses the received parameter to call a REST API. The RESTRequest node's properties specify where the REST API is running (in this tutorial this will be your localhost), and the Request parameter to send. The REST API implements a GET operation, where a graphical data mapping node is used to 'retrieve' information about a user based on the input data (a UserNumber path parameter)."
                     },
                     {
-                        "section": "In IBM Integration Bus, an application is a container for all the resources that are required to create a solution. An application can contain IBM Integration Bus resources, such as flows, message definitions, libraries, and JAR files. In this tutorial, an application is used to hold the message flow which contains the RESTRequest node. In addition, a Shared Library is used, which contains resources that can be used by different applications. In this tutorial, the Application references the Shared Library, which contains schema definition and the swagger file which describes the REST API. IBM Integration Bus has first-class support for building your own REST APIs."
+                        "section": "In IBM Integration Bus, an application is a container for all the resources that are required to create a solution. An application can contain IBM Integration Bus resources, such as flows, message definitions, libraries, and JAR files. In this tutorial, an application is used to hold the message flow which contains the RESTRequest node. In addition, a Shared Library is used, which contains resources shared by different applications."
                     }
                 ]
             },
@@ -115,10 +115,16 @@
                     "sections": 
 					[
                         {
-                            "section": "When you ready to proceed with this tutorial use Import button to the right. This will import three artefacts in your Workspace - <b>RESTRequest_API</b>, <b>SharedLibrary</b> and an application <b>TutorialREST_Client</b>."
+                            "section": "Use the Import button to the right to import the tutorial artifacts into your workspace:"
                         },
                         {
-                            "section": "The <b>RESTRequest_API</b> has one implemented operation (GET). The <b>TutorialREST_Client</b> application contains a simple message flow, which will call the REST API using a RESTRequest Node. The <b>SharedLibrary</b> contains resources which may be referenced by different applications or other libraries."
+                            "section": "The <b>TutorialREST_Client</b> application contains a simple message flow, which will call the REST API using a RESTRequest Node."
+                        },
+                        {
+                            "section": "The <b>SharedLibrary</b> contains resources which may be referenced by different applications or other libraries."
+                        },
+                        {
+                            "section": "The <b>RESTRequest_API</b> has one implemented operation (GET). "
                         },
                         {
                             "section": 
@@ -156,26 +162,31 @@
                 "overview": 
 				{
                     "name": "Prepare",
-                    "heading": "Imported projects",
+                    "heading": "Prepare the IIB runtime",
                     "_prepareComment": "A description of what just happened when the user clicked Import, and what will happen when the user clicks Deploy.",
                     "sections": 
 					[
                         {
-                            "section": "In the Application Development view of your workspace the imported resources will be shown. This includes the <b>RESTRequest_API</b>, <b>TutorialREST_Client</b> application, <b>SharedLibrary</b> and a BARs folder, which contains the BAR file. "
-                        },
-                        {
-                            "section": ""
-                        },
-                        {
-                            "section": "The BAR file has all resources packaged and ready for deployment. Alternatively, you can deploy the resources individually to your Integration Server. However, if the resources are deployed individually, it is required that the <b>SharedLibrary</b> is deployed before the <b>RESTTutorial_Client</b> application, as it references the Shared Library."
-                        },
-                        {
-                            "section": ""
-                        },
-                        {
-                            "section": "Once all artefacts have been deployed your application is ready to process messages. Use the 'Deploy' button on the 'Run' tab to complete the deployment."
+                            "section": "In order to run REST APIs in your Integration Server, you will need to enable The Cross-Origin Resource Sharing (CORS).",
+                            "steps": 
+							{
+                                "type": "ordered",
+                                "details": 
+								[
+                                                {
+                                                    "details": " In your Integration Console run the following command:<br><code><span class='cmdname'>mqsichangeproperties</span> <span class='varname'>TESTNODE_userid</span> -e <span class='varname'>default</span> -o <span class='varname'>HTTPConnector</span> -n <span class='varname'>corsEnabled</span> -v <span class='varname'>true</span></code><br>where<br><span class='varname'>TESTNODE_userid</span> is the name of your Integration Node <br>and<br> <span class='varname'>default</span> is the name of your Integration Server."
+                                                },
+                                                {
+                                                    "details": "In the Integration console window, stop the default integration node by typing the following command:<br><code><span class='cmdname'>mqsistop</span> <span class='varname'>TESTNODE_userid</span></code>"
+                                                },
+                                                {
+                                                    "details": " Start the default integration node by typing the following command:<br><code><span class='cmdname'>mqsistart</span> <span class='varname'>TESTNODE_userid</span></code>"
+                                                }
+                                ]
+                            }	
                         }
                     ]
+                    
                 },
                 "helpLinks": 
 				{
@@ -211,33 +222,17 @@
                     "sections": 
 					[
                         {
-                            "section": "The <b>TutorialREST_Client</b> application is shown in the Application Development view of your workspace.",
+                            "section": "The imported artifacts are all ready for you to test:",
                             "steps": 
 							{
                                 "type": "ordered",
                                 "details": 
 								[
                                     {
-                                        "details": "In order to run REST APIs in your Integration Server, you will need to enable The Cross-Origin Resource Sharing (CORS).",
-                                    	"substeps": 
-										{
-                                            "type": "unordered",
-                                            "details": 
-											[
-                                                {
-                                                    "details": " In your Integration Console run the following command:<br><code><span class='cmdname'>mqsichangeproperties</span> <span class='varname'>TESTNODE_userid</span> -e <span class='varname'>default</span> -o <span class='varname'>HTTPConnector</span> -n <span class='varname'>corsEnabled</span> -v <span class='varname'>true</span></code><br>where<br><span class='varname'>TESTNODE_userid</span> is the name of your Integration Node <br>and<br> <span class='varname'>default</span> is the name of your Integration Server."
-                                                },
-                                                {
-                                                    "details": "In the Integration console window, stop the default integration node by typing the following command:<br><code><span class='cmdname'>mqsistop</span> <span class='varname'>TESTNODE_userid</span></code>"
-                                                },
-                                                {
-                                                    "details": " Start the default integration node by typing the following command:<br><code><span class='cmdname'>mqsistart</span> <span class='varname'>TESTNODE_userid</span></code>"
-                                                }
-                                            ]
-                                        }	
-                                    },                                    
+                                        "details": "Deploy <b>RESTRequest_API</b> by dragging and dropping it on to your integration server"
+                                    },
                                     {
-                                        "details": "Open the REST_getUser message flow, and click the Flow Exerciser icon <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png' alt='' /> to start recording the message path through the flow."
+                                        "details": "Inside the <b>TutorialREST_Client</b> application, open the <b>REST_getUser</b> message flow, and click the Flow Exerciser icon <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png' alt='' /> to start recording the message path through the flow."
                                     },
                                     {
                                         "details": "Click the Send Message icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/sendMessage.png' alt='' /> to select a message to send to the flow."
@@ -250,25 +245,21 @@
                                             "details": 
 											[
                                                 {
-                                                    "details": "The input XML message is parsed from the HTTPInput node and the parameter 'UserNumber' with a value '1' is passed to the RESTRequest node."
+                                                    "details": "The dialog will show you the input XML message structure: <b>&lt;User&gt;&lt;UserNumber&gt;1&lt;/UserNumber&gt;&lt;/User&gt;</b>"
+                                                    
                                                 },
                                                 {
-                                                    "details": "The RESTRequest node calls the 'GET' operation of the <b>RESTRequest_API</b>"
-                                                },
-                                                {
-                                                    "details": "The implementation of the operation in this tutorial uses a Mapping node to map the input user number and return the user's first name, last name and its details."
+                                                    "details": "The dialog will show you the output JSON message structure: <b>{&quot;userNumber&quot;:&quot;1&quot;,&quot;firstName&quot;:&quot;Peter&quot;,&quot;lastName&quot;:&quot;Pan&quot;,&quot;userDetails&quot;:&quot;Employee&quot;}</b>"
                                                 }
                                             ]
                                         }
                                     }
                                 ]
-                            }
+                            }                            
                         },
                         {
-                            "section": "After the request message is processed, the message path is automatically highlighted on the message flow."
-                        },
-                        {
-                            "section": "Click on any connection to see the data that passed through that connection. You can see that the request (input) message data is in XML format and has one field named UserNumber. The response (output) message has been converted to a JSON format and has fields named 'firstName', 'lastName', 'userDetails', 'userNumber'."
+                            "section": "Close the dialog and the message path is automatically highlighted on the message flow. Click on any connection to see the data that passed through that connection."
+                            
                         },
                         {
                             "section": "Feel free to test the REST API by sending <b>'User 2'</b> or <b>'User 3'</b> test messages, following the above instructions."
@@ -289,17 +280,6 @@
                             "title": "Knowledge Center link to ",
                             "description": "Testing your message flow by using the Flow exerciser",
                             "link": "com.ibm.etools.mft.doc/rt26110_.htm"
-                        }
-                    ]
-                },
-                "actions": 
-				{
-                    "title": "Run Actions",
-                    "details": 
-					[
-                        {
-                            "name": "Deploy",
-                            "method": "deployArtifacts()"
                         }
                     ]
                 },
