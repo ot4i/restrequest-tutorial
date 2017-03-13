@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
-    <inlinedXMLSchema><![CDATA[<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">   
-    <xsd:element name="UserNumber" type="xsd:string"/>   
+    <inlinedXMLSchema><![CDATA[<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">    
+    <xsd:element name="UserNumber" type="xsd:string"/>    
 </xsd:schema>]]></inlinedXMLSchema>
     <input path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/BlobMessage.xsd" var="var"/>
     <input inlinedXMLSchema="true" path="../schema_0.xsd" var="var1"/>
@@ -18,109 +18,85 @@
             <cast derivedFrom="MB:JSON_operation_response" path="$ComIbmMessageAssembly_JSON/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}Output" ref="var3"/>
         </output>
         <move>
-            <input path="$ComIbmMessageAssembly_BLOB/Properties"/>
+            <input path="$ComIbmMessageAssembly_BLOB/Properties" var="Properties"/>
             <output path="$ComIbmMessageAssembly_JSON/Properties"/>
         </move>
-        <task type="info">
-            <documentation description="The REST API input data of operation getUser.">This Task is provided to show the location of the REST API input data of operation getUser.
-The path and query parameters are provided under "Parameters".
-You may need to use these as inputs to your mappings.</documentation>
-            <input path="$ComIbmMessageAssembly_BLOB/LocalEnvironment/REST/Input"/>
-        </task>
-        <condition>
-            <if>
-                <input path="$ComIbmMessageAssembly_BLOB/LocalEnvironment/REST/Input/Parameters/UserNumber" var="UserNumber10"/>
-                <output path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)"/>
-                <annotation key="$NON-PERSISTENT" value="1"/>
-                <test lang="xpath">$UserNumber10 = '1' or $UserNumber10 = '2' or $UserNumber10 = '3'</test>
+        <local>
+            <input path="$ComIbmMessageAssembly_BLOB/LocalEnvironment/REST/Input/Parameters/UserNumber[1]"/>
+            <output path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)"/>
+            <condition>
                 <if>
-                    <input path="$UserNumber10/." var="UserNumber11"/>
-                    <output path="."/>
-                    <annotation key="$NON-PERSISTENT" value="1"/>
-                    <test lang="xpath">$UserNumber11 = '1'</test>
-                    <local>
-                        <input path="$UserNumber11/." var="UserNumber15"/>
-                        <output path="."/>
-                        <move>
-                            <input path="$UserNumber15/." var="UserNumber16"/>
-                            <output path="userNumber"/>
-                        </move>
-                        <assign value="Peter">
-                            <output path="firstName"/>
-                        </assign>
-                        <assign value="Pan">
-                            <output path="lastName"/>
-                        </assign>
-                        <assign value="Employee">
-                            <output path="userDetails"/>
-                        </assign>
-                    </local>
+                    <input path=".[1]" var="UserNumber3"/>
+                    <output path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)"/>
+                    <test lang="xpath">$UserNumber3 = '1'</test>
+                    <assign value="Peter">
+                        <output path="firstName"/>
+                    </assign>
+                    <move>
+                        <input path="$UserNumber3/." var="UserNumber5"/>
+                        <output path="userNumber"/>
+                    </move>
+                    <assign value="Pan">
+                        <output path="lastName"/>
+                    </assign>
+                    <assign value="Employee">
+                        <output path="userDetails"/>
+                    </assign>
                 </if>
-                <if>
-                    <input path="$UserNumber10/." var="UserNumber12"/>
+                <elseif>
+                    <input path=".[1]" var="UserNumber4"/>
                     <output path="."/>
-                    <annotation key="$NON-PERSISTENT" value="1"/>
-                    <test lang="xpath">$UserNumber12 = '2'
-</test>
-                    <local>
-                        <input path="$UserNumber12/." var="UserNumber17"/>
-                        <output path="."/>
-                        <move>
-                            <input path="$UserNumber17/." var="UserNumber18"/>
-                            <output path="userNumber"/>
-                        </move>
-                        <assign value="Matilda">
-                            <output path="firstName"/>
-                        </assign>
-                        <assign value="Wormwood">
-                            <output path="lastName"/>
-                        </assign>
-                        <assign value="Explorer">
-                            <output path="userDetails"/>
-                        </assign>
-                    </local>
-                </if>
-                <if>
-                    <input path="$UserNumber10/." var="UserNumber13"/>
+                    <test lang="xpath">$UserNumber4 = '2'</test>
+                    <move>
+                        <input path="$UserNumber4/." var="UserNumber6"/>
+                        <output path="userNumber"/>
+                    </move>
+                    <assign value="Matilda">
+                        <output path="firstName"/>
+                    </assign>
+                    <assign value="Wormwood">
+                        <output path="lastName"/>
+                    </assign>
+                    <assign value="Explorer">
+                        <output path="userDetails"/>
+                    </assign>
+                </elseif>
+                <elseif>
+                    <input path=".[1]" var="UserNumber7"/>
                     <output path="."/>
-                    <annotation key="$NON-PERSISTENT" value="1"/>
-                    <test lang="xpath">$UserNumber13 = '3'</test>
-                    <local>
-                        <input path="$UserNumber13/." var="UserNumber19"/>
-                        <output path="."/>
-                        <move>
-                            <input path="$UserNumber19/." var="UserNumber20"/>
-                            <output path="userNumber"/>
-                        </move>
-                        <assign value="Harry">
-                            <output path="firstName"/>
-                        </assign>
-                        <assign value="Potter">
-                            <output path="lastName"/>
-                        </assign>
-                        <assign value="Writer">
-                            <output path="userDetails"/>
-                        </assign>
-                    </local>
-                </if>
-            </if>
-            <else>
-                <input path="$ComIbmMessageAssembly_BLOB/LocalEnvironment/REST/Input/Parameters/UserNumber"/>
-                <output path="$ComIbmMessageAssembly_JSON/JSON/spath('Data',2)"/>
-                <move>
-                    <input path="." var="UserNumber14"/>
-                    <output path="userNumber"/>
-                </move>
-                <assign value="User does not exist">
-                    <output path="firstName"/>
-                </assign>
-                <assign value="---">
-                    <output path="lastName"/>
-                </assign>
-                <assign value="---">
-                    <output path="userDetails"/>
-                </assign>
-            </else>
-        </condition>
+                    <test lang="xpath">$UserNumber7 = '3'</test>
+                    <move>
+                        <input path="$UserNumber7/." var="UserNumber8"/>
+                        <output path="userNumber"/>
+                    </move>
+                    <assign value="Harry">
+                        <output path="firstName"/>
+                    </assign>
+                    <assign value="Potter">
+                        <output path="lastName"/>
+                    </assign>
+                    <assign value="Writer">
+                        <output path="userDetails"/>
+                    </assign>
+                </elseif>
+                <else>
+                    <input path=".[1]" var="UserNumber9"/>
+                    <output path="."/>
+                    <move>
+                        <input path="$UserNumber9/." var="UserNumber21"/>
+                        <output path="userNumber"/>
+                    </move>
+                    <assign value="User does not exist">
+                        <output path="firstName"/>
+                    </assign>
+                    <assign value="---">
+                        <output path="lastName"/>
+                    </assign>
+                    <assign value="---">
+                        <output path="userDetails"/>
+                    </assign>
+                </else>
+            </condition>
+        </local>
     </mappingDeclaration>
 </mappingRoot>
