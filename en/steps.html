@@ -84,17 +84,29 @@
 						    
 								<p> Use the Import button to the right to import the tutorial artifacts into your workspace: </p>
 								
-							
-								<p> The <b>TutorialREST_Client</b> application contains a simple message flow, which will call the REST API using a RESTRequest Node. </p>
+								
+									
+									<ul>
+									
+									
+										<li> The <b>RESTRequest_Client</b> application contains a simple message flow, which will call the REST API using a RESTRequest Node.
+										
+										</li>
+									
+										<li> The <b>RESTRequest_SharedLibrary</b> contains resources which may be referenced by different applications or other libraries.
+										
+										</li>
+									
+										<li> The <b>RESTRequest_API</b> has one implemented operation (GET).
+										
+										</li>
+									
+									
+									</ul>
+									
 								
 							
-								<p> The <b>SharedLibrary</b> contains resources which may be referenced by different applications or other libraries. </p>
-								
-							
-								<p> The <b>RESTRequest_API</b> has one implemented operation (GET).  </p>
-								
-							
-								<p> Please note that the <b>RESTRequest_API</b> contains its own copy of the swagger document, which desribes the REST API. The application references a copy of the swagger file in the <b>SharedLibrary</b>. </p>
+								<p> Please note that the <b>RESTRequest_API</b> contains its own copy of the swagger document, which describes the REST API. The application references a separate copy of the swagger file in <b>RESTRequest_SharedLibrary</b>. </p>
 								
 							
 						</div>
@@ -129,7 +141,7 @@
 						  	<h4>Prepare the IIB runtime</h4>
 						    
 						    
-								<p> In order to run REST APIs in your Integration Server, you will need to enable The Cross-Origin Resource Sharing (CORS). </p>
+								<p> Before deploying the provided REST API in your Integration Server, enable Cross-Origin Resource Sharing (CORS). </p>
 								
 								
 									
@@ -189,7 +201,7 @@
 										
 										</li>
 									
-										<li> Inside the <b>TutorialREST_Client</b> application, open the <b>REST_getUser</b> message flow, and click the Flow Exerciser icon <img src="http://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png" alt> to start recording the message path through the flow.
+										<li> Inside the <b>RESTRequest_Client</b> application, open the <b>RESTRequest_Client</b> message flow, and click the Flow Exerciser icon <img src="http://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png" alt> to start recording the message path through the flow.
 										
 										</li>
 									
