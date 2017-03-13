@@ -43,7 +43,7 @@
   </div>
   <div class="row">
     <div class="small-9 medium-9 large-9 columns">
-      <h4>REST Request Node</h4>
+      <h4>Call a REST API using the RESTRequest node</h4>
     </div>
     <div class="small-3 medium-3 large-3 columns"> 
       <!--a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm');" class="small right helplink">IBM Knowledge Center</a-->
@@ -52,7 +52,7 @@
   <hr>
   <div class="row">
     <div class="small-12 medium-12 large-12 columns">
-      <h5> Learn how to use a RESTRequest node to call a REST API in an IBM Integration Bus message flow by exploring this simple example. </h5>
+      <h5> Learn how to use a RESTRequest node to call a REST API by exploring this simple example. </h5>
     </div>
   </div>
   <div class="row content-details">
@@ -63,9 +63,9 @@
       <div class="row">
       
         
-        <p> This tutorial demonstrates how a RESTRequest node can be used to call REST APIs in IBM Integration Bus. A simple application has been created, which message flow receives XML data over HTTP (using HTTPInput node). The XML data is parsed and passed to a REST Request Node, which uses the received parameter to call a REST API. The RESTRequest Node&#39;s properties specify where the REST API is running (in this tutorial this will be your localhost), the Request parameter and various other settings. The REST API has an implemented GET operation, where a graphical data mapping node is used to &#39;retrieve&#39; a User based on the input data and replies back to the request via an HTTPReply node. </p>
+        <p> This tutorial demonstrates how a RESTRequest node can be used to call REST APIs. A simple application has been created, containing a message flow which receives XML data over HTTP (using an HTTPInput node). The XML data is parsed and passed to a RESTRequest node, which uses the received parameter to call a REST API. The RESTRequest node&#39;s properties specify where the REST API is running (in this tutorial this will be your localhost), and the Request parameter to send. The REST API implements a GET operation, where a graphical data mapping node is used to &#39;retrieve&#39; information about a user based on the input data (a UserNumber path parameter). </p>
       
-        <p> In IBM Integration Bus, an application is a container for all the resources that are required to create a solution. An application can contain IBM Integration Bus resources, such as flows, message definitions, libraries, and JAR files. In this tutorial, an application is used to hold the message flow which contains the RESTRequest node. In addition, a Shared Library is used, which contains resources that can be used by different applications. In this tutorial, the Application references the Shared Library, which contains schema definition and the swagger file which describes the REST API. IBM Integration Bus has first-class support for building your own REST APIs. </p>
+        <p> In IBM Integration Bus, an application is a container for all the resources that are required to create a solution. An application can contain IBM Integration Bus resources, such as flows, message definitions, libraries, and JAR files. In this tutorial, an application is used to hold the message flow which contains the RESTRequest node. In addition, a Shared Library is used, which contains resources shared by different applications. </p>
       
       </div>	  
 		<!-- help links do not work in details page for GA 
@@ -119,7 +119,7 @@
             
               <li>REST Request node</li>
             
-              <li>Calling a REST API using REST Request node</li>
+              <li>Calling a REST API using the RESTRequest node</li>
             
               <li>Transformation using graphical data mapping</li>
             
@@ -130,7 +130,7 @@
           <ul>
           
           
-            <li>Understanding of how to use REST Request Node in IBM Integration Bus to call a REST API.</li>
+            <li>Understand how to use the RESTRequest Node to call a REST API.</li>
           
           </ul>
         </div>
