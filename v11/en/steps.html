@@ -52,7 +52,7 @@
 	<hr>
 	<div class="row">
 		<div class="small-10 medium-10 large-10 columns">
-		<h5> Learn how to use a RESTRequest node to call a REST API by exploring this simple example. </h5>
+		<h5> Learn how to use a RESTRequest node to call a REST API </h5>
 		</div>
 		<div class="small-2 medium-2 large-2 columns">
 			<button class="small radius button right" tabindex="0" id="backToGallery" onclick="backToGallery()"> Back To Gallery
@@ -138,25 +138,25 @@
 					<div class="small-12 medium-12 large-12 columns">
 					
 						<div class="row content-details">
-						  	<h4>Prepare the IIB runtime</h4>
+						  	<h4>Prepare an Integration Server</h4>
 						    
 						    
-								<p> Before deploying the provided REST API in your Integration Server, enable Cross-Origin Resource Sharing (CORS). </p>
+								<p> Create an integration server and connect your App Connect Enterprise Toolkit: </p>
 								
 								
 									
 									<ol>
 									
 									
-										<li>  In your Integration Console run the following command:<br><code><span class="cmdname">mqsichangeproperties</span> <span class="varname">TESTNODE_userid</span> -e <span class="varname">default</span> -o <span class="varname">HTTPConnector</span> -n <span class="varname">corsEnabled</span> -v <span class="varname">true</span></code><br>where<br><span class="varname">TESTNODE_userid</span> is the name of your Integration Node <br>and<br> <span class="varname">default</span> is the name of your Integration Server.
+										<li> Assuming you are using a Windows platform, open an App Connect Enterprise Command Console and start an integration server using the following command:<br><code>IntegrationServer --work-dir C:\TESTSERVER --name TESTSERVER --admin-rest-api 7600 --http-port-number 7800 --console-log</code> <br>where <b>C:\TESTSERVER</b> is a folder on your file system that the server will use for its working directory.
 										
 										</li>
 									
-										<li> In the Integration console window, stop the default integration node by typing the following command:<br><code><span class="cmdname">mqsistop</span> <span class="varname">TESTNODE_userid</span></code>
+										<li> In the App Connect Enterprise Toolkit Integration Explorer view, right click the folder <img src="https://ot4i.github.io/ot4i.tutorials//dist/images/icons/ace/IntegrationServers.png" alt> and select the menu item  <img src="https://ot4i.github.io/ot4i.tutorials//dist/images/icons/ace/ConnectToAnIntegrationServer.png" alt>. In the connection details panel, specify the <b>Host name</b> to be <b>localhost</b>, the <b>Port</b> to be <b>7600</b> and click Finish. This will connect your Toolkit and display the integration server that you started in the last step <img src="https://ot4i.github.io/ot4i.tutorials//dist/images/icons/ace/TESTSERVER.png" alt>
 										
 										</li>
 									
-										<li>  Start the default integration node by typing the following command:<br><code><span class="cmdname">mqsistart</span> <span class="varname">TESTNODE_userid</span></code>
+										<li> Locate <b>RESTRequest_Everything.bar</b> inside the <b>RESTRequest_Client</b> application in the Application Development view, and deploy it by dragging and dropping the BAR file on to the integration server in the Integration Explorer view.
 										
 										</li>
 									
@@ -173,7 +173,7 @@
 							
 								
 																
-								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/bi12002_.htm')" title="Knowledge Center link to Developing integration solutions by using integration services">Developing integration solutions by using integration services</a> </li>
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/bi12002_.htm')" title="Knowledge Center link to Developing integration solutions by using applications">Developing integration solutions by using applications</a> </li>
 							   	
 							
 							</ul>
@@ -187,54 +187,35 @@
 		    		<div class="small-10 medium-10 large-10 columns divider">
 					
 				    	<div class="row content-details">
-					      	<h4>Follow these steps to complete the tutorial</h4>
+					      	<h4>Test the message flow to complete the tutorial</h4>
 					        
 						    
-								<p> The imported artifacts are all ready for you to test: </p>
+								<p> Test the <b>RESTRequest_Client</b> message flow by sending it data using an HTTP client such as cURL: </p>
 								
 								
 									
 									<ol>
 									
 									
-										<li> Deploy <b>RESTRequest_API</b> by dragging and dropping it on to your integration server
+										<li> <code>cd C:\workspace</code><br> where <b>C:\workspace</b> is the location of your Toolkit Eclipse workspace directory on the filesystem.<br><code>curl -X POST http://localhost:7800/REST/getUsers -d @.\RESTRequest_client\input1.xml</code>
 										
 										</li>
 									
-										<li> Inside the <b>RESTRequest_Client</b> application, open the <b>RESTRequest_Client</b> message flow, and click the Flow Exerciser icon <img src="https://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png" alt> to start recording the message path through the flow.
+										<li> The input XML message structure looks like this:<br><b>&lt;User&gt;&lt;UserNumber&gt;1&lt;/UserNumber&gt;&lt;/User&gt;
 										
-										</li>
+										</b></li>
 									
-										<li> Click the Send Message icon <img src="https://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/sendMessage.png" alt> to select a message to send to the flow.
+										<li> The output JSON message structure looks like this:<br><b>{"userNumber":"1","firstName":"Peter","lastName":"Pan","userDetails":"Employee"}
 										
-										</li>
+										</b></li>
 									
-										<li> Choose the <b>'User 1'</b> message, and click <b>Send</b>. Your request message is sent to the HTTPInput node.
-										
-										
-											
-											<ul>
-											
-												
-													<li> The dialog will show you the input XML message structure: <b>&lt;User&gt;&lt;UserNumber&gt;1&lt;/UserNumber&gt;&lt;/User&gt;</b></li>
-												
-													<li> The dialog will show you the output JSON message structure: <b>{&quot;userNumber&quot;:&quot;1&quot;,&quot;firstName&quot;:&quot;Peter&quot;,&quot;lastName&quot;:&quot;Pan&quot;,&quot;userDetails&quot;:&quot;Employee&quot;}</b></li>
-												
-											
-											</ul>
-											
+										<li> Feel free to test the REST API by sending 'User 2' (input2.xml) or 'User 3' (input3.xml) test messages, in a similar way to the above instructions
 										
 										</li>
 									
 									
 									</ol>
 									
-								
-							
-								<p> Close the dialog and the message path is automatically highlighted on the message flow. Click on any connection to see the data that passed through that connection. </p>
-								
-							
-								<p> Feel free to test the REST API by sending <b>'User 2'</b> or <b>'User 3'</b> test messages, following the above instructions. </p>
 								
 							
 						</div>
@@ -246,11 +227,6 @@
 								
 																
 								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/bi12002_.htm')" title="Knowledge Center link to Developing integration solutions by using applications">Developing integration solutions by using applications</a> </li>
-							   	
-							
-								
-																
-								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/rt26110_.htm')" title="Knowledge Center link to Testing your message flow by using the Flow exerciser">Testing your message flow by using the Flow exerciser</a> </li>
 							   	
 							
 							</ul>
