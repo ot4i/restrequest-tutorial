@@ -32,7 +32,7 @@
 			"resourceToOpen": "MainFlow",
 			"helpLink": {
 				"text": "IBM Knowledge Center",
-				"link": "/com.ibm.ace.home.doc/help_home.htm"
+           		"link": "https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.ace.home.doc/help_home.htm"
 			}
 		},
 		"pageDetails": {
@@ -70,8 +70,8 @@
 				"details": [{
 						"title": "Knowledge Center link to ",
 						"description": "Developing integration solutions by using applications",
-						"link": "com.ibm.etools.mft.doc/bi12002_.htm",
-						"type": "help"
+						"link": "https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/bi12002_.htm",
+						"type": "web"
 					},
 					{
 						"title": "GitHub link to ",
@@ -114,7 +114,8 @@
 					"details": [{
 						"title": "Knowledge Center link to ",
 						"description": "Developing integration solutions by using applications",
-						"link": "com.ibm.etools.mft.doc/bi12002_.htm"
+						"link": "https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/bi12002_.htm",
+						"type": "web"
 					}]
 				},
 				"actions": {
@@ -152,7 +153,8 @@
 					"details": [{
 						"title": "Knowledge Center link to ",
 						"description": "Developing integration solutions by using applications",
-						"link": "com.ibm.etools.mft.doc/bi12002_.htm"
+						"link": "https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/bi12002_.htm",
+						"type": "web"
 					}]
 				},
 				"actions-removed": {
@@ -193,17 +195,10 @@
 					"details": [{
 							"title": "Knowledge Center link to ",
 							"description": "Developing integration solutions by using applications",
-							"link": "com.ibm.etools.mft.doc/bi12002_.htm"
+							"link": "https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/bi12002_.htm",
+							"type": "web"
 						}
 					]
-				},
-				"exits": {
-					"title": "Run Exits",
-					"details": [{
-						"name": "Clean Up",
-						"description": "Clean up and remove any changes in your workspace made by the tutorial.",
-						"method": "cleanUp()"
-					}]
 				}
 			}
 		}
