@@ -105,7 +105,7 @@
 							}
 						},
 						{
-							"section": ["Please note that the <b>RESTRequest_API</b> contains its own copy of the swagger document, which describes the REST API. The application references a separate copy of the swagger file in <b>RESTRequest_SharedLibrary</b>."]
+							"section": "Please note that the <b>RESTRequest_API</b> contains its own copy of the swagger document, which describes the REST API. The application references a separate copy of the swagger file in <b>RESTRequest_SharedLibrary</b>."
 						}
 					]
 				},
