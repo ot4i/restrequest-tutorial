@@ -31,8 +31,8 @@
 			"_resourceToOpenComment": "The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json Tutorials listing on ot4i.",
 			"resourceToOpen": "MainFlow",
 			"helpLink": {
-				"text": "IBM Knowledge Center",
-           		"link": "https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.ace.home.doc/help_home.htm"
+				"text": "IBM Documentation",
+           		"link": "https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/acesw_home.html"
 			}
 		},
 		"pageDetails": {
@@ -68,9 +68,9 @@
 				"_helpLinksComment": "Helplinks that have a type:web attribute are rendered as web links. Otherwise, links are assumed to be to embedded Help topics in the Knowledge Center.",
 				"title": "Find out more",
 				"details": [{
-						"title": "Knowledge Center link to ",
+						"title": "IBM Documentation link to ",
 						"description": "Developing integration solutions by using applications",
-						"link": "https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/bi12002_.htm",
+						"link": "https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/bi12002_.htm",
 						"type": "web"
 					},
 					{
@@ -112,9 +112,9 @@
 				"helpLinks": {
 					"title": "Find out more",
 					"details": [{
-						"title": "Knowledge Center link to ",
+						"title": "IBM Documentation link to ",
 						"description": "Developing integration solutions by using applications",
-						"link": "https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/bi12002_.htm",
+						"link": "https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/bi12002_.htm",
 						"type": "web"
 					}]
 				},
@@ -151,9 +151,9 @@
 				"helpLinks": {
 					"title": "Find out more",
 					"details": [{
-						"title": "Knowledge Center link to ",
+						"title": "IBM Documentation link to ",
 						"description": "Developing integration solutions by using applications",
-						"link": "https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/bi12002_.htm",
+						"link": "https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/bi12002_.htm",
 						"type": "web"
 					}]
 				},
@@ -193,9 +193,9 @@
 				"helpLinks": {
 					"title": "Find out more",
 					"details": [{
-							"title": "Knowledge Center link to ",
+							"title": "IBM Documentation link to ",
 							"description": "Developing integration solutions by using applications",
-							"link": "https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/bi12002_.htm",
+							"link": "https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/bi12002_.htm",
 							"type": "web"
 						}
 					]
